@@ -9,8 +9,14 @@ class Route
         'PUT'   => [],
         'DELETE'=> [],
     ];
+    protected $namespace ;
+
+    public function setNamespace($namespace) {
+        $this->namespace = $namespace;
+    }
 
     private function response($action,$route,$handler){
+        $handler = ($this->namespace)?$this->namespace.'/'.$handler:$handler;
         $this->routes[$action][$route]  = $handler;
         return $this;
     }
@@ -34,6 +40,7 @@ class Route
     public function run(){
         return $this->dispatch();
     }
+
 
     public function dispatch(){
         $action = $_SERVER['REQUEST_METHOD'];
