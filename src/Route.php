@@ -16,7 +16,7 @@ class Route
     }
 
     private function response($action,$route,$handler){
-        $handler = isset($this->namespace)?$this->namespace."\\".$handler:$handler;
+        $handler = isset($this->namespace)?$this->namespace.'\\'.$handler:$handler;
         $this->routes[$action][$route]  = $handler;
         return $this;
     }
